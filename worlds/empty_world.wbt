@@ -1,0 +1,63 @@
+#VRML_SIM R2022a utf8
+
+WorldInfo {
+  basicTimeStep 9.5
+}
+
+Viewpoint {
+  fieldOfView 0.8
+  orientation -0.4 0.4 0.8 1.75285
+  position 0 -3.2 5.3
+  #follow "agent_6"  # Target the drone node
+  #followMode "PanAndTilt"  # Camera rotates and follows the drone
+  #followSmoothness 0.8  # Adjust to control how smoothly the camera follows
+}
+
+TexturedBackgroundLight {
+  luminosity 0.5
+  castShadows FALSE
+}
+
+DirectionalLight {
+  direction 1 1 -1
+  color 0.83 0.83 0.75
+  ambientIntensity 1.25  # Increase this to make ambient light brighter
+}
+
+Floor {
+  translation 0 0 0
+  rotation 0 1 0 0
+  size 200 200
+  appearance PBRAppearance {
+    baseColor 1 1 1  # Color override (default to white)
+    baseColorMap ImageTexture {
+      url [
+        "/home/ctabasso/cf_ws/src/crazychoir_examples/worlds/textures/rough_oak_base_color.jpg"
+      ]
+    }
+    roughnessMap ImageTexture {
+      url [
+        "/home/ctabasso/cf_ws/src/crazychoir_examples/worlds/textures/rough_oak_roughness.jpg"
+      ]
+    }
+    metalness 0
+    normalMap ImageTexture {
+      url [
+        "/home/ctabasso/cf_ws/src/crazychoir_examples/worlds/textures/rough_oak_normal.jpg"
+      ]
+    }
+    normalMapFactor 0.5
+    IBLStrength 1
+    occlusionMap ImageTexture {
+      url [
+        "/home/ctabasso/cf_ws/src/crazychoir_examples/worlds/textures/rough_oak_occlusion.jpg"
+      ]
+    }
+    occlusionMapStrength 1
+
+    # Optional texture scaling
+    textureTransform TextureTransform {
+      scale 0.2 0.2  # Adjust as needed to scale the texture
+    }
+  }
+}

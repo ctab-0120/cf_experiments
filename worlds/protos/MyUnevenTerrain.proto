@@ -1,0 +1,13 @@
+#VRML_SIM R2022a utf8
+
+EXTERNPROTO "UnevenTerrain.proto"
+EXTERNPROTO "DryMud.proto"
+
+PROTO MyUnevenTerrain [
+]
+{
+  UnevenTerrain {
+    appearance DryMud {}
+    perlinNOctaves 10
+  }
+}

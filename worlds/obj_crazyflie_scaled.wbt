@@ -1,0 +1,246 @@
+Robot {
+  name "$NAME"
+  translation $X $Y $Z
+  controller "<extern>"
+    children [
+    Solid {
+      translation 0 0 -0.015
+      children [
+        Transform {
+          scale 3 3 3  # Scale factor for battery (visual only)
+          children [
+            DEF battery Shape {
+              appearance PBRAppearance {
+                baseColor 0.5 0.5 0.6
+                metalness 0.1
+                emissiveIntensity 0
+              }
+              geometry Mesh {
+                url [
+                  "meshes/battery.stl"
+                ]
+              }
+            }
+          ]
+        }
+        Transform {
+          scale 3 3 3  # Scale factor for battery holder (visual only)
+          children [
+            DEF battery_holder Shape {
+              appearance PBRAppearance {
+                baseColor 0 0 0
+                metalness 0.2
+              }
+              geometry Mesh {
+                url [
+                  "meshes/battery_holder.stl"
+                ]
+              }
+            }
+          ]
+        }
+        Transform {
+          scale 3 3 3  # Scale factor for motors (visual only)
+          children [
+            DEF motors Shape {
+              appearance PBRAppearance {
+                baseColor 0.5 0.5 0.5
+                emissiveColor 0.4 0.4 0.4
+              }
+              geometry Mesh {
+                url [
+                  "meshes/4_motors.stl"
+                ]
+              }
+            }
+          ]
+        }
+        Transform {
+          scale 3 3 3  # Scale factor for motor mounts (visual only)
+          children [
+            DEF motormounts Shape {
+              appearance PBRAppearance {
+                transparency 0.1
+                metalness 0.2
+                emissiveColor 0.5 0.5 0.5
+              }
+              geometry Mesh {
+                url [
+                  "meshes/4_motormounts.stl"
+                ]
+              }
+            }
+          ]
+        }
+        Transform {
+          scale 3 3 3  # Scale factor for pinheader (visual only)
+          children [
+            DEF pinheader Shape {
+              appearance DEF metal PBRAppearance {
+                baseColor 0.5 0.5 0.5
+                metalness 0.8
+                emissiveColor 0.4 0.4 0.4
+              }
+              geometry Mesh {
+                url [
+                  "meshes/2_pinheaders.stl"
+                ]
+              }
+            }
+          ]
+        }
+        Transform {
+          scale 3 3 3  # Scale factor for body (visual only)
+          children [
+            DEF body Shape {
+              appearance DEF PCB PBRAppearance {
+                baseColor 0 0 0
+                roughness 0.3
+                metalness 0.5
+              }
+              geometry Mesh {
+                url [
+                  "meshes/cf_body.stl"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+      name "body"
+    }
+    GPS {
+    }
+    Gyro {
+    }
+    InertialUnit {
+    }
+    DEF m1 Propeller {
+      shaftAxis 0 0 1
+      centerOfThrust 0.093 -0.093 0.036  # Keep the same physical properties
+      thrustConstants -4e-05 0
+      torqueConstants 2.4e-06 0
+      device RotationalMotor {
+        name "m1_motor"
+        maxVelocity 600
+        maxTorque 30  # Keep the original motor properties
+      }
+      slowHelix Solid {
+        translation 0.093 -0.093 0.036  # Keep the same physical properties
+        children [
+          Transform {
+            scale 3 3 3  # Scale factor for propeller (visual only)
+            children [
+              Shape {
+                appearance DEF plastic PBRAppearance {
+                  baseColor 0 0 0
+                  metalness 0.3
+                }
+                geometry Mesh {
+                  url [
+                    "meshes/ccw_prop.stl"
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      }
+    }
+    DEF m2 Propeller {
+      shaftAxis 0 0 1
+      centerOfThrust -0.093 -0.093 0.036  # Keep the same physical properties
+      thrustConstants 4e-05 0
+      torqueConstants 2.4e-06 0
+      device RotationalMotor {
+        name "m2_motor"
+        maxVelocity 600
+        maxTorque 30  # Keep the original motor properties
+      }
+      slowHelix Solid {
+        translation -0.093 -0.093 0.036  # Keep the same physical properties
+        children [
+          Transform {
+            scale 3 3 3  # Scale factor for propeller (visual only)
+            children [
+              Shape {
+                appearance USE plastic
+                geometry Mesh {
+                  url [
+                    "meshes/cw_prop.stl"
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      }
+    }
+    DEF m3 Propeller {
+      shaftAxis 0 0 1
+      centerOfThrust -0.093 0.093 0.036  # Keep the same physical properties
+      thrustConstants -4e-05 0
+      torqueConstants 2.4e-06 0
+      device RotationalMotor {
+        name "m3_motor"
+        maxVelocity 600
+        maxTorque 30  # Keep the original motor properties
+      }
+      slowHelix Solid {
+        translation -0.093 0.093 0.036  # Keep the same physical properties
+        children [
+          Transform {
+            scale 3 3 3  # Scale factor for propeller (visual only)
+            children [
+              Shape {
+                appearance USE plastic
+                geometry Mesh {
+                  url [
+                    "meshes/ccw_prop.stl"
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      }
+    }
+    DEF m4 Propeller {
+      shaftAxis 0 0 1
+      centerOfThrust 0.093 0.093 0.036  # Keep the same physical properties
+      thrustConstants 4e-05 0
+      torqueConstants 2.4e-06 0
+      device RotationalMotor {
+        name "m4_motor"
+        maxVelocity 600
+        maxTorque 30  # Keep the original motor properties
+      }
+      slowHelix DEF prop Solid {
+        translation 0.093 0.093 0.036  # Keep the same physical properties
+        children [
+          Transform {
+            scale 3 3 3  # Scale factor for propeller (visual only)
+            children [
+              DEF prop Shape {
+                appearance USE plastic
+                geometry Mesh {
+                  url [
+                    "meshes/cw_prop.stl"
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+  boundingObject Cylinder {
+    height 0.09
+    radius 0.15
+  }
+  physics Physics {
+    density -1
+    mass 0.038  # Keep the original mass and density
+  }
+}
