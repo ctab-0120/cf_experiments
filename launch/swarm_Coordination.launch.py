@@ -1,4 +1,5 @@
 import os
+import sys
 import numpy as np
 import pathlib
 
@@ -7,6 +8,7 @@ from launch_ros.actions import Node
 from ament_index_python.packages import get_package_share_directory
 
 from webots_ros2_driver.webots_launcher import WebotsLauncher
+
 
 def get_webots_driver_cf(agent_id):
     package_dir_driver = get_package_share_directory('crazychoir_examples')
@@ -79,11 +81,11 @@ def generate_launch_description():
     # Generate Webots world
     robots = [{
                 'name': f'agent_{i}',
-                'type': 'crazyflie', 
+                'type': 'crazyflie_scaled', 
                 'position': P[i, :].tolist(),
             } for i in range(N)]
     
-    world_package_dir = get_package_share_directory('crazychoir_examples')
+    world_package_dir = get_package_share_directory('cf_experiments')
     source_filename = os.path.join(world_package_dir, 'worlds', 'empty_world.wbt')
     target_filename = os.path.join(world_package_dir, 'worlds', 'my_world.wbt')
     generate_webots_world_file(robots, source_filename, target_filename)            

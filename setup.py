@@ -12,6 +12,8 @@ setup(
             ['resource/' + package_name]),
         ('share/' + package_name, ['package.xml']),
         ('share/' + package_name + '/launch', glob('launch/*.launch.py')),
+        ('share/' + package_name + '/worlds', glob('worlds/*.wbt')),
+        ('share/' + package_name + '/worlds/meshes', glob('worlds/meshes/*.stl')),
     ],
     install_requires=['setuptools'],
     zip_safe=True,

@@ -26,38 +26,11 @@ DirectionalLight {
 
 Floor {
   translation 0 0 0
-  rotation 0 1 0 0
-  size 200 200
-  appearance PBRAppearance {
-    baseColor 1 1 1  # Color override (default to white)
-    baseColorMap ImageTexture {
-      url [
-        "/home/ctabasso/cf_ws/src/crazychoir_examples/worlds/textures/rough_oak_base_color.jpg"
-      ]
-    }
-    roughnessMap ImageTexture {
-      url [
-        "/home/ctabasso/cf_ws/src/crazychoir_examples/worlds/textures/rough_oak_roughness.jpg"
-      ]
-    }
-    metalness 0
-    normalMap ImageTexture {
-      url [
-        "/home/ctabasso/cf_ws/src/crazychoir_examples/worlds/textures/rough_oak_normal.jpg"
-      ]
-    }
-    normalMapFactor 0.5
-    IBLStrength 1
-    occlusionMap ImageTexture {
-      url [
-        "/home/ctabasso/cf_ws/src/crazychoir_examples/worlds/textures/rough_oak_occlusion.jpg"
-      ]
-    }
-    occlusionMapStrength 1
-
-    # Optional texture scaling
-    textureTransform TextureTransform {
-      scale 0.2 0.2  # Adjust as needed to scale the texture
+  size 100 100
+  appearance Appearance {
+    material Material {
+      diffuseColor 0.6 0.62 0.61  # White color
     }
   }
 }
+
